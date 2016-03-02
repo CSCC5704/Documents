@@ -483,26 +483,51 @@ Our solution is new and we believe it's aggressive in clone detection field.
 
 \section{Background}
 
-To detect cloned codes, the first thing is to know clone types: there are two main kinds of similarity between code fragments. The first kind has textual similarity, and often comes from copying and pasting. Textual similarity can fall into three types: Type 1 simply includes the variations in whitespace, layout and comments. In addition to Type 1, Type 2 allows more variations in identifiers, literals and types. Type 3 contains Type 2 and allows further modifications such as changed, added or removed statements. An example of Type 1, 2, 3 clones is shown in Fig \ref{fig:TOC}. 
-The second main kind is functional similarity. Functional similarity is described by Type 4 clone, or semantic clone, which is more complicated. In this case code fragments perform the same computation but are implemented in different ways. Few tools have been developed to detect Type 4 clones so far.\\
+To detect cloned codes, the first thing is to know clone types: there are two main kinds of similarity between code fragments. The first kind has textual similarity, and often comes from copying and pasting. Textual similarity can fall into three types: 
+\begin{itemize}
+\item Type 1 simply includes the variations in whitespace, layout and comments. 
+\item Type 2 allows more variations in identifiers, literals and types, in addition to Type 1.
+\item Type 3 contains Type 2 and allows further modifications such as changed, added or removed statements. 
+\end{itemize}
+
+An example of Type 1, 2, 3 clones is shown in Fig \ref{fig:TOC}. 
+
+The second main kind is functional similarity. Functional similarity is described by Type 4 clone, or semantic clone, which is more complicated. 
+\begin{itemize}
+\item In Type 4 code fragments perform the same computation but are implemented in different ways. 
+\end{itemize}
+
+Few tools have been developed to detect Type 4 clones so far.\\
 
 
 \begin{figurehere}
-\centering \includegraphics[width=0.4\textwidth]{graph2_1} \caption{Types of Clone} \label{fig:TOC}
+\centering \includegraphics[width=0.4\textwidth]{types} \caption{Types of Clone} \label{fig:TOC}
 \end{figurehere}
 
-To detect the code clone, researchers have developed different techniques and tools. The first kind is based on textual comparison, which means comparing whole lines to each other textually. The second kind is based on tokens, 
+Based on the cloned types, researchers have developed different techniques and tools. 
+\begin{itemize}
+\item Text based, which means comparing whole lines to each other textually. 
+\item Token based, it is still line-based comparision, but each sequence is summarized by a functor that abstracts the identifiers and literals, this encoding process preserves the structure of the whole sentence.
+\item Metric based, by gathering different metrics for code fragments, these metric vectors are compared.
+\item Tree based, usually means the abstract syntax trees(AST), a program is transformed into an abstract syntax tree, then the leaves and subtrees are compared.
+\item Graph based, for example, program dependency graphs(PDG), control and data flow dependencies of a function can be represented by a program dependency graph, and comparision of subgraphs will be performed.
+\end{itemize}
 
-trees and graphs. Among all the techniques and tools, token-based method performs well in both clone type detection and time cost.
+There are also other techniques but will not be discussed here.
+Among all the techniques and tools, token-based method performs well in both clone type detection and time cost.
 
 
 \section{Related Work}
 
 Many token-based methods have been developed, like CCFinder\cite{CCFinder}, CMCD\cite{CMCD},  Boreas\cite{Boreas}, RTF\cite{RTF}. 
-CCFinder is a classical tool, it compares each code portion so results in a high accuracy, however that also results in huge time cost. 
-CMCD uses Count Matrix, which works well in extracting variables those are copied but in different names, but is doesn't include other contributions. 
-Boreas uses CMCD to compare variables, as well as taking keywords and symbols into account, but still has room for improvement, both executing time, and detection accuracy. 
-RTF uses flexible tokenization, but also loses a lot of imformation.
+
+CCFinder is a classical tool, it first makes a parameter-replacement, like replaces identifiers with a token, and compares each code portion to all other portions. This is very long and detailed comparision, which results in a high accuracy, however that could also costs a huge amount of time.
+
+CMCD uses Count Matrix, it counts many aspects for each variable, and constructs a count vector for that variable, then the count vectors are compared to find out corresponding variables. This method works well in extracting variables those are copied but in different names, but is doesn't include other contributions, like keywords and symbols.
+
+Boreas is based on CMCD, it uses CMCD to compare variables, as well as taking keywords and symbols into account, but still has room for improvement, both in executing time, and detection accuracy. 
+
+RTF uses flexible tokenization, but it doesn't use acess modifiers like \textbf{private, protected, public} and type names \textbf{int, short, long, float, double}, so it loses a lot of imformation.
 
 
 %\subsection{Subsection Heading Here}
