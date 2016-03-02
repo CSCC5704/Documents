@@ -375,22 +375,25 @@ Blacksburg, VA, 24061\\ Email: liuqing@vt.edu}
 \begin{abstract}
 %\boldmath
 Code clone detection remains an active topic in software enginnering. It is not only common in the programming process, but also leading to low maintainability. 
-In this paper, we propose a simple and fast tool to detect cloned codes, basing on the token frequency in source code. Our tool extracts variables in each block, performs pretreatment on them, as well as counts keywords and symbols. After transforming these pieces of information into lists, different weights are given to these components, then a similarity comparision algorithm is developed to find out similar codes. 
-As a counting-based detection tool, it compares lists of names and numbers instead of source code directly, so we can expect less time cost compared to other detection tools. Also components have different weights, thus accuracy can be maintained to some extent.
+In this paper, we propose a simple and efficient tool in Java to detect cloned codes, basing on the token frequency in source code. Our tool extracts variables in each block, performs pretreatment on them, as well as counts keywords and symbols. After transforming these pieces of information into lists, different weights are given to these components, then a similarity algorithm is introduced to find out similar codes. 
+As a counting-based detection tool, it compares lists of names and numbers instead of source code directly, so we can expect less time cost compared to other detection tools. Also components have different weights, thus precision and recall can be maintained to some extent.
 \end{abstract}
 
 \section{Introduction}
 
-It is very common that people clone codes, i.e. reuse some code fragments by copying with or without modification in the coding process. 
-Previous research shows a significant fraction of the code being cloned even in some well-known software systems. The fraction of duplicated code in X Windows System is about 19\%, while in some core parts of Linux the number is between 15\% and 25\%. 
-Even if code clone can improve the efficiency of the program in some ways, for example, reducing execution time for no need to call the same function again and again, it is quite difficult for developers to maintain a software in its life cycle: if adding or cutting a feature, fixing a bug, it has to be applied to all the similar parts. To solve this problem, clone detection has become an important tool for programmers: it's much easier if provided all the copied parts when making a change.
+It is very common that people clone codes in their programs, i.e. reuse some code fragments by copying with or without modification in the coding process. 
+Previous research shows a significant fraction of the code being cloned even in some well-known software systems. The fraction of duplicated code in X Windows System is about 19\%\cite{cloneinsys1}, while in some core parts of Linux the number is between 15\% and 25\%\cite{cloneinsys2}. 
+Even if code clone can improve the efficiency of a program in some ways, for example, reducing execution time for no need to call functions, it is quite difficult for developers to maintain a software in its life cycle: if fixing a bug, adding or cutting a feature, it has to be applied to all the similar parts. To solve this problem, clone detection has become an important tool for programmers, since it is much easier if provided all the copied parts when making a change.
 
-There are four kinds of clones based on the variation of codes, first simply whitespace, layout and comments, then identifiers, literals and type, more comes with changed, added or removed statements, and finally is the same computation in different ways.  
-A number of tools have been implemented, using various algorithms to find out clones. Those tools can be based on texts, tokens, trees and graphs. Among all the techniques and tools, token-based method performs well in both clone type detection and time cost.
+A number of techniques and tools have been implemented, using various algorithms to find out code clones in different level. Token-based method shows a good comprehensive performance among all of them. However, every tool has its own limitations, just like the time cost of CCFinder. Then we provoked our research, to develop and implement a scalable clone detection based on tokens to detect code clone in token variation and statement modification.
 
-However every tool has its own limitations, just like the huge time cost of CCFinder. Then we provoked our project, to develop and implement a scalable clone detection based on tokens to detect the first three types of code clone, i.e. textual clone. 
-While many researchers have done similar job before, our tool is new: with the description of clone types, developers would not make dramatic changes in code clone process except for some modifications such as types, identifiers and statements. 
-Based on this premise, we try to design and improve a classification statistical method to calculate the similarity between code fragments. Specifically, to detect whether fragment A is a clone of fragment B or not, we use a parser to catch all the tokens in the two fragments, and compare the frequencies of them.
+While many researchers have done similar job before, our tool is new: since most developers would not make dramatic changes in code clone process except for some tokens such as keywords, types, variables and operators, we try to design and improve a simple statistical method to calculate the similarity between code fragments. Specifically, to detect whether fragment A is a clone of fragment B or not, we transform the two 
+
+
+first we tokenize each fragment, design a flexible token filter, and compare the frequencies of them.
+
+
+
 
 The more detailed idea is like below:
 first the source code will be divided into fragments, for each fragment, any useful tokens, such as types, variables, identifiers, operators, will be counted, so the information is transformed into a list of names and numbers. 
@@ -468,7 +471,13 @@ RTF uses flexible tokenization, but it doesn't use acess modifiers like \textbf{
 
 % references section
 
-\begin{thebibliography}{4}
+\begin{thebibliography}{10}
+
+\bibitem{cloneinsys1}
+Brenda S. Baker, \emph{On Finding Duplication and Near-Duplication in Large Software Systems}
+
+\bibitem{cloneinsys2}
+G. Antoniola, U. Villanob, E. Merloc, M. Di Penta, \emph{Analyzing cloning evolution in the Linux kernel}
 
 \bibitem{CCFinder}
 T. Kamiya, S. Kusumoto and K. Inoue, \emph{A Token-based Code Clone Detection Tool - CCFinder and Its Empirical Evaluation}
