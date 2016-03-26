@@ -385,7 +385,7 @@ It is very common that people clone codes in their programs, i.e. reuse some cod
 Previous research shows a significant fraction of the code being cloned even in some well-known software systems. The fraction of duplicated code in X Windows System is about 19\%\cite{cloneinsys1}, while in some core parts of Linux the number is between 15\% and 25\%\cite{cloneinsys2}. 
 Even if code clone can improve the efficiency of a program in some ways, for example, reducing execution time for no need to call functions, it is quite difficult for developers to maintain a software in its life cycle: if fixing a bug, adding or cutting a feature, it has to be applied to all the similar parts. To solve this problem, clone detection has become an important tool for programmers, since it is much easier if provided all the copied parts when making a change.
 
-A number of techniques and tools have been implemented, using various algorithms to find out code clones in different level. Token-based method shows a good comprehensive performance among all of them. However, each tool has its own limitations, just like the time cost of CCFinder. Then we provoked our research, to develop and implement a scalable clone detection based on tokens to detect code clone in token variation and statement modification.
+A number of techniques and tools have been implemented, using various algorithms to find out code clones in different level. Token-based method shows a good comprehensive performance among all of them. However, each tool has its own limitations, just like the time cost of CCFinder. Then we proposed our research, to develop and implement a scalable clone detection based on tokens to detect code clone in token variation and statement modification.
 
 While many researchers have done similar job before, our tool is new: since most developers would not make dramatic changes in code clone process except for some token modifications including keywords, types, variables and operators, we try to design and improve a simple statistical method to calculate the similarity between code fragments. Specifically, to detect whether fragment A is a clone of fragment B or not, we tokenize each fragment and design a flexible token filter. Any useful tokens, such as types, variables, identifiers, operators, will be counted, so the information is transformed into a token frequency vector. Next is pretreatment of variable names, take $v_A$ and $v_B$, compare and find out similar variables with small variations in prefix, suffix and substitution. After finding matching variable names, we use a similarity algorithm to measure the two vectors, by putting different weights on different levels of tokens, the accuracy is enhanced, and this method can be improved after actual testing. Finally, a threshold is introduced and optimized, which can also be decided through experiments.
 
@@ -441,7 +441,7 @@ Boreas is based on CMCD, it uses CMCD to compare variables, as well as taking ke
 RTF uses flexible tokenization, but it doesn't use access modifiers like \emph{private, protected, public} and type names \emph{int, short, long, float, double}, so it loses information to some degree.
 
 As for the similarity calculation, different methods such as Cosine similarity, Jaccard similarity, Euclidean distance and Manhattan distance can be applied in specific cases.
-The Cosine similarity function calculates cosine of the angle between two vectors:
+The Cosine similarity function calculates cosine of the angle between two vectors $v_a$ and $v_b$:
 
 \begin{equation}
 CosSim = cos(\alpha) = \frac{v_a \cdot v_b}{||v_a|| \cdot ||v_b||} \nonumber
@@ -449,10 +449,10 @@ CosSim = cos(\alpha) = \frac{v_a \cdot v_b}{||v_a|| \cdot ||v_b||} \nonumber
 
 If $v_a$ and $v_b$ are in the same direction, then $cos(0)$ gives a similarity of 1, otherwise the cosine is between 0 and 1. This function takes care of vector length, but may not fit for the token frequency case. 
 
-CMCD gives a very good equation to derive the difference between two count vectors $v_a$ and $v_b$, which is expressed by the Euclidian Distance between them in space:
+CMCD gives a very good equation to derive the difference between two count vectors, which is expressed by the Euclidian Distance between them in space:
 
 \begin{equation}
-ED(v_a, v_b) = ||v_a - v_b||_2 = \sqrt{\sum_{i=1}^n(v_{1i} - v_{2i})^2} \nonumber
+ED(v_a, v_b) = ||v_a - v_b||_2 = \sqrt{\sum_{i=1}^n(v_{ai} - v_{bi})^2} \nonumber
 \end{equation}
 
 where n is the dimension of the vectors, $v_i$ is the $i$th component of $v$.
