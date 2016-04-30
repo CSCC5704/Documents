@@ -1,0 +1,57 @@
+Test Files: Spinner.java
+Similarity = 0.98
+
+Line #: 304-313
+public void cut () {
+	checkWidget ();
+	if ((style & SWT.READ_ONLY) != 0) return;
+	NSText fieldEditor = textView.currentEditor();
+	if (fieldEditor != null) {
+		fieldEditor.cut(null);
+	} else {
+		//TODO
+	}
+}
+
+Line #: 563-572
+public void paste () {
+	checkWidget ();
+	if ((style & SWT.READ_ONLY) != 0) return;
+	NSText fieldEditor = textView.currentEditor();
+	if (fieldEditor != null) {
+		fieldEditor.paste(null);
+	} else {
+		//TODO
+	}
+}
+
+Test Files: Tree.java
+Similarity = 0.89
+
+Line #: 368-377
+void clear (TreeItem parentItem, int index, boolean all) {
+	TreeItem item = _getItem (parentItem, index, false);
+	if (item != null) {
+		item.clear();
+		item.redraw (-1);
+		if (all) {
+			clearAll (item, true);
+		}
+	}
+}
+
+Line #: 379-391
+void clearAll (TreeItem parentItem, boolean all) {
+	int count = getItemCount (parentItem);
+	if (count == 0) return;
+	TreeItem [] children = parentItem == null ? items : parentItem.items; 
+	for (int i=0; i<count; i++) {
+		TreeItem item = children [i];
+		if (item != null) {
+			item.clear ();
+			item.redraw (-1);
+			if (all) clearAll (item, true);
+		}
+	}
+}
+
