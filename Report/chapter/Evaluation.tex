@@ -9,9 +9,38 @@ In the process of finding test data, there is a benchmark of Detection of Softwa
 
 We select test data from SWT--since machine learning is based on SWT files. The 10 files we used for testing are: \textit{Button.java, CoolBar.java, Menu.java, Spinner.java, TabFolder.java, TableItem.java, ToolBar.java, ToolItem.java, Tracker.java, Tree.java}. The number of methods ranges from 38 to 147.
 
-Since we have our tool and test data, we are ready to do evaluation. Table shows the test result:
+Since we have our tool and test data, we are ready to do evaluation. Table \ref{tab:Table_2} shows the test result: \\
 
-A TABLE GOES HERE
+\begin{tablehere}
+%\small
+\begin{tabular}[h]{|c|c|c|c|}
+\hline
+Test Files & \begin{tabular}{c}TP + FN \\ (Actual \\ Clones) \end{tabular} 
+				& \begin{tabular}{c}TP + FP \\ (Detected \\ Clones) \end{tabular} & TP \\
+\hline
+Button.java & 0 & 4 & 0 \\
+\hline
+CoolBar.java & 11 & 12 & 10\\
+\hline
+Menu.java &1 & 0 & 0\\
+\hline
+Spinner.java & 2 & 2 & 2\\
+\hline
+TabFolder.java & 3 & 2 & 2 \\
+\hline
+TableItem.java & 20 & 20 & 18\\
+\hline
+ToolBar.java & 4 & 4 & 4 \\
+\hline
+ToolItem.java & 3 & 3 & 3 \\
+\hline
+Tracker.java & 1 & 1 & 1 \\
+\hline
+Tree.java & 11 & 13 & 9\\
+\hline
+\end{tabular}\\
+\caption{Test Result}\label{tab:Table_2}
+\end{tablehere}
 
 \begin{figurehere}
 \centering \includegraphics[width = 0.4 \textwidth]{Graph_4} 

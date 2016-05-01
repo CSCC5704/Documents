@@ -13,7 +13,37 @@ Second is the tokenization of method body and get the frequency of each token, w
 
 Third, for each method, we have a list of tokens, these tokens fall into 9 categories: \textit{methodParameter, methodType, tokenListNumber, tokenListType, tokenListKeyword, tokenListMarker, tokenListOperator, tokenListOther1, tokenListOther2}. The purpose of doing so is that these categories have different weights, for example, two pieces of code both have 2 type names: ``int'', that provides no useful information, however, if two pieces of code both have 2 method parameter names: ``drawVerticalLine'', that means these pair are more likely the same.
 
-AN EXAMPLE GOES HERE
+A list of categorized tokens are shown in table \ref{tab:Table_1}:\\
+
+\begin{tablehere}
+\footnotesize
+\begin{tabular}[h]{|c|c|c||c|c|c|}
+\hline
+Token & Category & Freq 	& Token & Category & Freq\\
+\hline
+int & Type &1 		&  ) & Marker & 6\\
+\hline
+for & Keyword & 1 	& \} & Marker & 2\\
+\hline
+i & Other1 & 8		& \{ & Marker & 1\\
+\hline
+System & Other1 & 3	& + & Operator & 6\\
+\hline
+out & Other1 & 3	& = & Operator & 1\\
+\hline
+println & Other1 & 3	& - & Operator & 1\\
+\hline
+toBinary & Other1 & 1	& < & Operator & 1\\
+\hline
+Integer & Other1 & 1	& : & Other2 & 2\\
+\hline
+toBinaryString & Other1 & 1	& 5.0 & Num & 1\\
+\hline
+( & Marker & 6		& 33.0 & Num & 1\\
+\hline
+\end{tabular}\\
+\caption{A List of Token Frequency}\label{tab:Table_1}
+\end{tablehere}
 
 Fourth, similarity of \textit{methodParameter} is caculated with bigram similarity. If ``drawVerticalLine'' and ``VerticalDrawLine'' appear in two code fragments respectively, we don't want to take them as different. So two similar variable names will be compared by bigram similarity, if they are similar, they will be taken as the same and their frequencies will be compared later.
 
@@ -28,7 +58,7 @@ A diagram describing the whole process is shown in Fig:\ref{fig:Graph_1}.\\
 \caption{Overall Project Framework} \label{fig:Graph_1}
 \end{figurehere}
 
-During the final step, different weights are given to different categories, however, picking 9 weights arbitrarily may not be resonable. So we used Machine Learning method to set the weights. Provided training files with ``ground truth'', machine learning process will decide the most proper weights, which is much more resonable than setting by hand. After actual testing, it turns out machine learning does provide a better result.
+During the final step, different weights are given to different categories, however, picking 9 weights arbitrarily may not be resonable. So we used Machine Learning method to set the weights. Provided training files with ``ground truth'', machine learning process will decide the most proper weights, which is much more resonable than setting by hand. After actual testing, it turns out machine learning does provide a better result.\\
 
 \begin{figurehere}
 \centering \includegraphics[width = 0.45 \textwidth]{Graph_2} 

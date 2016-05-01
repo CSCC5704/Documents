@@ -19,7 +19,35 @@ There are mainly four types of clones:
 
 An example of \emph{Type 1, 2, 3} clones is shown below:  
 
-AN EXAMPLE GOES HERE
+\begin{lstlisting}[basicstyle=\footnotesize, language=Java]
+public static int Num(int X, int Y){
+	int a = 100;
+	int b = 200;
+	if(X>Y){
+		return b + X;
+	}
+	else{
+		a = 80;
+		return a + Y;
+	}
+}
+
+public static int Num(int X, int Y){
+	int a=100;
+	// no blanks _Type 1
+	int c = 120;
+	// b to c _Type 2
+	if(X>Y){
+		X = X - Y;
+		// add stmt _Type 3
+		return c + X;
+	}
+	else{
+		a = 80;
+		return a + Y;
+	}
+}
+\end{lstlisting}
 
 \indent \emph{Type 4}: code fragments perform the same computation or results but are implemented in different ways. 
 

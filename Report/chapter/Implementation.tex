@@ -25,7 +25,13 @@ This is a well-defined calculation, because no difference in the lists gives a s
 
 An example shows the resonablity of this algorithm:
 
-AN EXAMPLE GOES HERE
+\begin{eqnarray}\nonumber
+&&\text{List}_x = {<a, 3>, <b, 3>, <c, 3>, <d, 1>}\\ \nonumber
+&&\text{List}_y = {<a, 3>, <b, 3>, <c, 2>, <d, 5>} \\ 
+&&\text{Sim}(\text{List}_x, \text{List}_y) = 1 - \frac{1 + 4}{10 + 13} = 0.78
+\end{eqnarray}
+
+here $<a, 3>$ means the frequency for $a$ is 3.
 
 Before using machine learning to set the weights, we set the weights arbitrarily, which may not provide the best result, but it works in finding clones. 
 
