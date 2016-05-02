@@ -23,23 +23,31 @@ where the difference is defined by:
 
 This is a well-defined calculation, because no difference in the lists gives a similarity of 1, while totally different lists give similarity of 0.
 
-An example shows the resonablity of this algorithm:
+Here are two examples showing the resonablity of this algorithm:
 
 \begin{eqnarray}\nonumber
-&&\text{List}_x = {<a, 3>, <b, 3>, <c, 3>, <d, 1>}\\ \nonumber
-&&\text{List}_y = {<a, 3>, <b, 3>, <c, 2>, <d, 5>} \\ 
-&&\text{Sim}(\text{List}_x, \text{List}_y) = 1 - \frac{1 + 4}{10 + 13} = 0.78
+&&\text{List}_x = {<a, 3>, <b, 3>, <c, 3>, <d, 2>}\\ \nonumber
+&&\text{List}_y = {<a, 3>, <b, 3>, <c, 3>, <d, 5>} \\ 
+&&\text{Sim}(\text{List}_x, \text{List}_y) = 1 - \frac{3}{11 + 14} = 0.88
+\end{eqnarray}
+
+\begin{eqnarray}\nonumber
+&&\text{List}_x = {<a, 3>, <b, 1>, <c, 3>, <d, 1>}\\ \nonumber
+&&\text{List}_y = {<a, 0>, <b, 5>, <c, 2>, <d, 5>} \\ 
+&&\text{Sim}(\text{List}_x, \text{List}_y) = 1 - \frac{3 + 4 + 1 + 4}{8 + 12} = 0.4
 \end{eqnarray}
 
 here $<a, 3>$ means the frequency for $a$ is 3.
 
-Before using machine learning to set the weights, we set the weights arbitrarily, which may not provide the best result, but it works in finding clones. 
+This result matches our intuition: the lists in the first example are more similar than in the second example, and we are likely to take the first example as clone, which has a similarity of 0.88.
 
-To get training data, we use manual selection to find ``ground truth''. However it is not so easy to manually find ``ground truth'': if a Java file has 100 methods, then we need to compare $\frac{100\times 99}{2} = 4950$ pairs. In these pairs, most of them are not clone, so we applied our tool to the Java file, with a low threshold--0.65 to rule out most of the pairs, and manually checked the rest. This reduced our work from thousands of comparasions to less than a hundred. This process may introduce false negatives but we consider it to be small.
+Before using machine learning to set the weights, we set the weights arbitrarily, which may not provide the best result, but it works in finding clones. That being said, STCD can also run without training, however the training process will provide a better result. 
+
+To get training data, we use manual selection to find ``ground truth''. However it is not so easy to manually find ``ground truth'': if a Java file has 100 methods, then we need to compare $\frac{100\times 99}{2} = 4950$ pairs. In these pairs, most of them are not clone, so we applied our tool to the Java file, with a low threshold of 0.65 to rule out most of the pairs, and manually checked the rest. This reduced our work from thousands of comparasions to less than a hundred. This process may introduce false negatives but we consider it to be small.
 
 We selected training files from SWT--the tool to develop our UI. The advantage to use data from the same project is that machine learning can learn the developer's behavior. We chose 10 Java files, namely: \textit{Combo.java, DragSource.java, DropTarget.java, FormData.java, Label.java, Printer.java, Program.java, Shell.java, Text.java, WebKit.java}. The number of methods ranges from 12 to 125.
 
-In the training process, MLP studies 50 clone pairs and 150 non-clone pairs to decide the best weights. There are much more non-clone pairs but studying more of them does not give a better result.
+In the training process, MLP studies 50 clone pairs and 150 non-clone pairs to decide the best weights. There are many more non-clone pairs but studying more of them does not give a better result.
 
 To make STCD more user friendly, we also developed a UI, as shown in Fig:\ref{fig:Graph_3}.
 
