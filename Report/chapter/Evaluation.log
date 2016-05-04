@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  1 MAY 2016 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 MAY 2016 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -434,94 +434,94 @@ LaTeX Info: Redefining \nameref on input line 4.
 \openout3 = `Evaluation.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 8.
+(Font)              <7> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 8.
+(Font)              <5> on input line 10.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 17.
+(Font)              <8> on input line 19.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 17.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 18.
+(Font)              <6> on input line 19.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 20.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 18.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
 
-Overfull \hbox (7.20264pt too wide) in paragraph at lines 21--22
+Overfull \hbox (7.20264pt too wide) in paragraph at lines 23--24
 [][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (7.20264pt too wide) in paragraph at lines 33--34
+Overfull \hbox (7.20264pt too wide) in paragraph at lines 35--36
 [][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (26.40283pt too wide) in paragraph at lines 45--46
+Overfull \hbox (26.40283pt too wide) in paragraph at lines 47--48
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (36.00293pt too wide) in paragraph at lines 46--47
+Overfull \hbox (36.00293pt too wide) in paragraph at lines 48--49
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (117.60376pt too wide) in paragraph at lines 60--61
+Overfull \hbox (117.60376pt too wide) in paragraph at lines 62--63
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 61.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 63.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 61.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 63.
 
-Overfull \hbox (12.00269pt too wide) in paragraph at lines 66--67
+Overfull \hbox (12.00269pt too wide) in paragraph at lines 68--69
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--106
+Underfull \hbox (badness 10000) in paragraph at lines 84--110
 
  []
 
-<../graphs/Graph_4.png, id=10, 446.1468pt x 512.1534pt>
+<../graphs/Graph_4.png, id=26, 446.1468pt x 512.1534pt>
 File: ../graphs/Graph_4.png Graphic file (type png)
 
 <use ../graphs/Graph_4.png>
-Package pdftex.def Info: ../graphs/Graph_4.png used on input line 116.
+Package pdftex.def Info: ../graphs/Graph_4.png used on input line 122.
 (pdftex.def)             Requested size: 206.39685pt x 236.92975pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1122) has occurred while \output is active []
 
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../graphs/Graph_5.png, id=83, 633.0852pt x 325.215pt>
+<../graphs/Graph_5.png, id=99, 633.0852pt x 325.215pt>
 File: ../graphs/Graph_5.png Graphic file (type png)
 
 <use ../graphs/Graph_5.png>
-Package pdftex.def Info: ../graphs/Graph_5.png used on input line 133.
+Package pdftex.def Info: ../graphs/Graph_5.png used on input line 139.
 (pdftex.def)             Requested size: 232.19843pt x 119.2806pt.
 
-<../graphs/Graph_6.png, id=85, 679.338pt x 397.485pt>
+<../graphs/Graph_6.png, id=101, 679.338pt x 397.485pt>
 File: ../graphs/Graph_6.png Graphic file (type png)
 
 <use ../graphs/Graph_6.png>
-Package pdftex.def Info: ../graphs/Graph_6.png used on input line 142.
+Package pdftex.def Info: ../graphs/Graph_6.png used on input line 150.
 (pdftex.def)             Requested size: 232.19843pt x 135.8588pt.
 
 
@@ -535,24 +535,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 146.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 154.
 [2 <../graphs/Graph_4.png> <../graphs/Graph_5.png> <../graphs/Graph_6.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 146.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 154.
 
 (./Evaluation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 146.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 146.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 154.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 154.
 Package rerunfilecheck Info: File `Evaluation.out' has not changed.
-(rerunfilecheck)             Checksum: 83328E5435E9F2B4AC141B4BF29062B5;45.
+(rerunfilecheck)             Checksum: 625D3637AD569928DEEEFC3659DFBA75;350.
  ) 
 Here is how much of TeX's memory you used:
- 7953 strings out of 493089
- 121219 string characters out of 6134842
- 286514 words of memory out of 5000000
- 11287 multiletter control sequences out of 15000+600000
+ 7961 strings out of 493089
+ 121339 string characters out of 6134842
+ 286802 words of memory out of 5000000
+ 11291 multiletter control sequences out of 15000+600000
  34438 words of font info for 68 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 38i,12n,42p,599b,1249s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,42p,599b,1464s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texli
@@ -563,10 +563,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/
 fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
 1/urw/times/utmri8a.pfb>
-Output written on Evaluation.pdf (2 pages, 236476 bytes).
+Output written on Evaluation.pdf (2 pages, 238560 bytes).
 PDF statistics:
- 150 PDF objects out of 1000 (max. 8388607)
- 129 compressed objects within 2 object streams
- 67 named destinations out of 1000 (max. 500000)
- 24 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
+ 71 named destinations out of 1000 (max. 500000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

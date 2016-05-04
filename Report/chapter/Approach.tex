@@ -7,9 +7,15 @@
 
 Our approach is constructed as follows:
 
+\subsection{Method Declaration}
+
 First is method declaration. We used AST Parser Tool to catch each method and get the information, which means, the \textit{startLineNumber, endLineNumber, methodName, methodParameters, methodType, methodBody}. This costs extra time and can be improved in future work.
 
+\subsection{Tokenization}
+
 Second is the tokenization of method body and get the frequency of each token, which includes the comment and white space removal process.
+
+\subsection{Categorization}
 
 Third, for each method, we have a list of tokens, these tokens fall into 9 categories: \textit{methodParameter, methodType, tokenListNumber, tokenListType, tokenListKeyword, tokenListMarker, tokenListOperator, tokenListOther1, tokenListOther2}. The purpose of doing so is that these categories have different weights, for example, two pieces of code both have 2 type names: ``int'', that provides no useful information, however, if two pieces of code both have 2 method parameter names: ``drawVerticalLine'', that means these pair are more likely the same.
 
@@ -45,9 +51,15 @@ toBinaryString & Other1 & 1	& 5.0 & Num & 1\\
 \caption{A List of Token Frequency}\label{tab:Table_1}
 \end{tablehere}
 
+\subsection{Pretreatment of Variable Names}
+
 Fourth, similarity of \textit{methodParameter} is caculated with bigram similarity. If ``drawVerticalLine'' and ``VerticalDrawLine'' appear in two code fragments respectively, we don't want to take them as different. So two similar variable names will be compared by bigram similarity, if they are similar, they will be taken as the same and their frequencies will be compared later.
 
+\subsection{Similarity Calculation for Each Category}
+
 Fifth, after the pretreatment of variable names, a similarity algorithm is applied to each category, and the number of similarity will be caculated, so we have 9 similarity numbers.
+
+\subsection{Final Similarity Calculation and Result}
 
 Finally, the 9 similarity numbers are given different weights and the final similarity will be calculated. A threshold is introduced, if the similarity is higher than the threshold, the result will be printed out: clone group number, similarity number, method name 1, start and end line number, method name 2, start and end line number.
 
@@ -57,6 +69,8 @@ A diagram describing the whole process is shown in Fig:\ref{fig:Graph_1}.\\
 \centering \includegraphics[width = 0.45 \textwidth]{Graph_1} 
 \caption{Overall Project Framework} \label{fig:Graph_1}
 \end{figurehere}
+
+\subsection{Machine Learning}
 
 During the final step, different weights are given to different categories, however, picking 9 weights arbitrarily may not be resonable. So we used Machine Learning method to set the weights. Provided training files with ``ground truth'', machine learning process will decide the most proper weights, which is much more resonable than setting by hand. After actual testing, it turns out machine learning does provide a better result.
 

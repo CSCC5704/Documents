@@ -5,6 +5,8 @@
 
 \section{Evaluation}
 
+\subsection{Test Result Without Machine Learning}
+
 In the process of finding test data, there is a benchmark of Detection of Software Clones: {\color{blue} \url{http://www.bauhaus-stuttgart.de/clones/}}. It is a general repository and information center for Detection of Software Clones, it accepts files with labeled clones for clone detection tool evaluation. However its format does not meet our requirement, so again we use manual selection to find ``ground truth'' for testing, just as we did in finding training data: using a low threshold of 0.65 to rule out most of the pairs and manually compare the rest.
 
 Using low threshold to rule out most of the non-clones is reasonable because STCD can also work without training. Apply STCD to test files without training will get the following result:
@@ -71,6 +73,8 @@ void clearAll (TreeItem parentItem, boolean all) {
 
 These two pairs are clones and are found by our tool. After manual inspection, we found that almost all pairs with similarity lower than 0.65 are not clones. Actually, many pairs with similarity between 0.65 and 0.87 are not clones either. So we consider the process of manually finding ground truth is realiable, and the clones ruled out by the similarity of 0.65, i.e. false negative, is small.
 
+\subsection{Test Result With Machine Learning}
+
 We select test data from SWT--since machine learning is based on SWT files. The 10 files we used for testing are: \textit{Button.java, CoolBar.java, Menu.java, Spinner.java, TabFolder.java, TableItem.java, ToolBar.java, ToolItem.java, Tracker.java, Tree.java}. The number of methods ranges from 38 to 147.
 
 Since we have our tool and test data, we are ready to do evaluation. After tranining with MLP, the test result is shown in Table \ref{tab:Table_2}: \\
@@ -112,6 +116,8 @@ In the table above, the detected clones are very close to actual clones, 4 out o
 
 One thing needs to be mentioned is about \textit{ToolItem.java}, the process of manually finding ``ground truth'' results in 2 false negatives. At first we decided there is only 1 ``actual'' clone, but after training and testing, STCD found 3. After checking by eye, we decided the extra 2 pairs are actually clones, they were ruled out earlier by the low threshold of 0.65. This being said, manual selection does result in false negatives, however on the other hand, this implies the training process is effective.
 
+\subsection{Precision and Recall}
+
 \begin{figurehere}
 \centering \includegraphics[width = 0.4 \textwidth]{Graph_4} 
 \caption{Calculation of Precision and Recall} \label{fig:Graph_4}
@@ -133,6 +139,8 @@ Except for \textit{Button.java} and \textit{Menu.java} which we are unable to ca
 \centering \includegraphics[width = 0.45 \textwidth]{Graph_5} 
 \caption{Precision and Recall of STCD} \label{fig:Graph_5}
 \end{figurehere}
+
+\subsection{Time Cost Evaluation}
 
 The time cost of STCD is also evaluated, and is given in Fig:\ref{fig:Graph_6}. This experiment is performed on a Macbook Air, time cost varies with the configuration of computer. Since the comparasion for n methods is $\frac{n(n-1)}{2}$, we expect the time cost to be quadratic, and it turns out to be so--with some variations, which is the result of different method lengths.
 

@@ -7,7 +7,11 @@
 
 Following the idea of our approach, we have implemented STCD. The source code is available at {\color{blue} \url{https://github.com/CSCC5704/SourceCodewithUI}}.
 
+\subsection{Bigram Similarity}
+
 After catching all the tokens and accumulating their frequencies, in the pretreatment of variable names, we introduced bigram similarity. After actual testing, the threshold is set to 0.7 in our project. If the similarity of two variable names is higher than 0.7, then they are considered the same and their frequency will be compared.
+
+\subsection{Similarity Algorithm}
 
 For each category of tokens, to calculate the similarity, we used am algorithm similar to Levenshtein Distance:
 
@@ -41,6 +45,8 @@ here $<a, 3>$ means the frequency for $a$ is 3.
 
 This result matches our intuition: the lists in the first example are more similar than in the second example, and we are likely to take the first example as clone, which has a similarity of 0.88.
 
+\subsection{Machine Learning}
+
 Before using machine learning to set the weights, we set the weights arbitrarily, which may not provide the best result, but it works in finding clones. That being said, STCD can also run without training, however the training process will provide a better result. 
 
 To get training data, we use manual selection to find ``ground truth''. However it is not so easy to manually find ``ground truth'': if a Java file has 100 methods, then we need to compare $\frac{100\times 99}{2} = 4950$ pairs. In these pairs, most of them are not clone, so we applied our tool to the Java file, with a low threshold of 0.65 to rule out most of the pairs, and manually checked the rest. This reduced our work from thousands of comparasions to less than a hundred. This process may introduce false negatives but we consider it to be small.
@@ -49,14 +55,20 @@ We selected training files from SWT--the tool to develop our UI. The advantage t
 
 In the training process, MLP studies 50 clone pairs and 150 non-clone pairs to decide the best weights. There are many more non-clone pairs but studying more of them does not give a better result.
 
+\subsection{User Interface}
+
 To make STCD more user friendly, we also developed a UI, as shown in Fig:\ref{fig:Graph_3}.
+
+DISCUSS MORE ABOUT SWT HERE
 
 \begin{figure*}
 \centering \includegraphics[width = \textwidth]{Graph_3} 
 \caption{User Interface} \label{fig:Graph_3}
 \end{figure*}
 
-The instruction to use STCD:
+\subsection{Instruction of STCD}
+
+The step-by-step instruction to use STCD:
 
 \begin{enumerate}
 \item From the training menu users are able to select training files. STCD can also run the testing without training, then starts from Step 4.
