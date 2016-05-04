@@ -123,7 +123,7 @@ One thing needs to be mentioned is about \textit{ToolItem.java}, the process of 
 \caption{Calculation of Precision and Recall} \label{fig:Graph_4}
 \end{figurehere}
 
-From Fig:\ref{fig:Graph_4}, based on the definition of Precision and Recall, 
+Fig:\ref{fig:Graph_4} shows the relationship between actual clones and detected clones, based on the definition of Precision and Recall, 
 
 \begin{equation}
 \text{Precision} = \frac{ \text{True Positives}} {\text{Detected Clones}} = \frac{ \text{TP}} {\text{TP} + \text{FP}}
@@ -133,7 +133,7 @@ From Fig:\ref{fig:Graph_4}, based on the definition of Precision and Recall,
 \text{Recall} = \frac{ \text{True Positives}} {\text{Actual Clones}} = \frac{ \text{TP}} {\text{TP} + \text{FN}}
 \end{equation}
 
-Except for \textit{Button.java} and \textit{Menu.java} which we are unable to calculate the Precision and Recall, the other 8 files have Average Precision of 92.75\% and Average Recall of 91.25\%. The precision and recall for each file is given in Fig:\ref{fig:Graph_5}.
+Except for \textit{Button.java} and \textit{Menu.java} which we are unable to calculate the Precision and Recall, the other 8 files have Average Precision of 92.75\% and Average Recall of 91.25\%. The precision and recall for each file is given in Fig:\ref{fig:Graph_5}, they are high enough to make STCD practical.
 
 \begin{figurehere}
 \centering \includegraphics[width = 0.45 \textwidth]{Graph_5} 
@@ -144,7 +144,7 @@ Except for \textit{Button.java} and \textit{Menu.java} which we are unable to ca
 
 The time cost of STCD is also evaluated, and is given in Fig:\ref{fig:Graph_6}. This experiment is performed on a Macbook Air, time cost varies with the configuration of computer. Since the comparasion for n methods is $\frac{n(n-1)}{2}$, we expect the time cost to be quadratic, and it turns out to be so--with some variations, which is the result of different method lengths.
 
-A quadratic time cost is tolerable, especially with the fact that running a file with 100 methods takes only 2 seconds. Most Java files have less than hundreds of methods, so our tool is very practical.
+A quadratic time cost is tolerable, especially with the fact that running a file with 100 methods takes only 2 seconds. Most Java files won't have more than hundreds of methods, so our tool is very practical.
 
 \begin{figurehere}
 \centering \includegraphics[width = 0.45 \textwidth]{Graph_6} 

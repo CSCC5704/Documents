@@ -9,7 +9,7 @@ Following the idea of our approach, we have implemented STCD. The source code is
 
 \subsection{Bigram Similarity}
 
-After catching all the tokens and accumulating their frequencies, in the pretreatment of variable names, we introduced bigram similarity. After actual testing, the threshold is set to 0.7 in our project. If the similarity of two variable names is higher than 0.7, then they are considered the same and their frequency will be compared.
+After catching all the tokens and accumulating their frequencies, in the pretreatment of variable names, we introduced bigram similarity. After actual testing, the threshold is set to 0.7 in our project. If the similarity of two variable names is higher than 0.7, then they are considered the same and their frequencies will be compared.
 
 \subsection{Similarity Algorithm}
 
@@ -19,7 +19,7 @@ For each category of tokens, to calculate the similarity, we used am algorithm s
 \text{Sim}(\text{List}_x, \text{List}_y) = 1 - \frac{\sum \text{Diff}(\text{Elem}_{x_i}, \text{Elem}_{y_i})} {\sum (\text{Freq}_{x_i} + \text{Freq}_{y_i} )}
 \end{equation}
 
-where the difference is defined by:
+where the difference of two elements is defined by:
 
 \begin{equation}
 \text{Diff}(\text{Elem}_{x_a}, \text{Elem}_{y_a}) = \text{Abs}(\text{Freq}_{x_a} - \text{Freq}_{y_a})

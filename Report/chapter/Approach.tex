@@ -5,21 +5,21 @@
 
 \section{Approach}
 
-Our approach is constructed as follows:
+Our detailed approach is constructed as follows:
 
 \subsection{Method Declaration}
 
-First is method declaration. We used AST Parser Tool to catch each method and get the information, which means, the \textit{startLineNumber, endLineNumber, methodName, methodParameters, methodType, methodBody}. This costs extra time and can be improved in future work.
+STCD is based on methods, it counts tokens in each method. So the very first thing to do is method declaration. Here we used AST Parser Tool to catch each method and get the information, which means, the \textit{startLineNumber, endLineNumber, methodName, methodParameters, methodType, methodBody}. This costs extra time than needed and can be improved in future work.
 
 \subsection{Tokenization}
 
-Second is the tokenization of method body and get the frequency of each token, which includes the comment and white space removal process.
+Since we have divided the whole file into methods, next is to tokenize the method body and get the frequency of each token. This includes the comment and white space removal process.
 
 \subsection{Categorization}
 
-Third, for each method, we have a list of tokens, these tokens fall into 9 categories: \textit{methodParameter, methodType, tokenListNumber, tokenListType, tokenListKeyword, tokenListMarker, tokenListOperator, tokenListOther1, tokenListOther2}. The purpose of doing so is that these categories have different weights, for example, two pieces of code both have 2 type names: ``int'', that provides no useful information, however, if two pieces of code both have 2 method parameter names: ``drawVerticalLine'', that means these pair are more likely the same.
+Now for each method, we have a list of tokens, these tokens fall into 9 categories: \textit{methodParameter, methodType, tokenListNumber, tokenListType, tokenListKeyword, tokenListMarker, tokenListOperator, tokenListOther1, tokenListOther2}. The purpose of doing so is that these categories have different meanings. For example, two pieces of code both have 2 type names: ``int'', that provides no useful information, however, if two pieces of code both have 2 method parameter names: ``drawVerticalLine'', that means these pair are more likely the same. Later on these categories will be given different weights, depending on their importance.
 
-A list of categorized tokens are shown in table \ref{tab:Table_1}:\\
+A list of categorized tokens is shown in table \ref{tab:Table_1}:\\
 
 \begin{tablehere}
 \footnotesize
@@ -53,15 +53,15 @@ toBinaryString & Other1 & 1	& 5.0 & Num & 1\\
 
 \subsection{Pretreatment of Variable Names}
 
-Fourth, similarity of \textit{methodParameter} is caculated with bigram similarity. If ``drawVerticalLine'' and ``VerticalDrawLine'' appear in two code fragments respectively, we don't want to take them as different. So two similar variable names will be compared by bigram similarity, if they are similar, they will be taken as the same and their frequencies will be compared later.
+Among all the categories, variable name, i.e. \textit{methodParameter} is special. Its similarity is caculated with bigram algorithm. If ``drawVerticalLine'' and ``VerticalDrawLine'' appear in two code fragments respectively, we don't want to take them as different. So two similar variable names will be compared by bigram similarity, if they are similar, they will be taken as the same and their frequencies will be compared later.
 
 \subsection{Similarity Calculation for Each Category}
 
-Fifth, after the pretreatment of variable names, a similarity algorithm is applied to each category, and the number of similarity will be caculated, so we have 9 similarity numbers.
+After the pretreatment of variable names, a similarity algorithm is applied to each category. A list of tokens with their frequencies can be taken as a vector, so the similarity for two vectors can be caculated, and we have 9 similarity numbers for each comparision.
 
 \subsection{Final Similarity Calculation and Result}
 
-Finally, the 9 similarity numbers are given different weights and the final similarity will be calculated. A threshold is introduced, if the similarity is higher than the threshold, the result will be printed out: clone group number, similarity number, method name 1, start and end line number, method name 2, start and end line number.
+Finally, the 9 similarity numbers are given different weights and the final similarity will be calculated. A threshold is introduced, if the final similarity is higher than the threshold, the result will be printed out in the following format: clone group number, similarity number: method name 1, start line number, end line number; method name 2, start line number, end line number.
 
 A diagram describing the whole process is shown in Fig:\ref{fig:Graph_1}.\\
 

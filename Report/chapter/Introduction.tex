@@ -69,7 +69,7 @@ The second step is the pretreatment of variable names, take $v_A$ and $v_B$, com
 After finding matching variable names, the third step is to use a similarity algorithm to measure the two vectors, by putting different weights on different levels of tokens, and the weights can be set by machine learning, which enhances the accuracy.
 Finally, a threshold is introduced and optimized, depending on the precision and recall from actual experiments.
 
-After actual testing, STCD reaches 90\% in both precision and recall rate, which means STCD is very effective.
+After actual testing, STCD reaches 90\% in both precision and recall rate, which means STCD is very effective. The time cost is quadratic in terms of number of methods in Java file: running a Java file with 100 methods takes only 2 seconds, which is very practical.
 
 The structure of the rest of the paper is as follows: in Section 2, we introduce the mechanism of STCD in detail; in Section 3, we describe the implementation of STCD; in Section 4, we evaluate STCD and get the precision and recall rate, and also the time cost; in Section 5, we analyze the threats to validity; Section 6 is the conclusion; Section 7 lives the related work. 
 
