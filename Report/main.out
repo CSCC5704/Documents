@@ -21,4 +21,7 @@
 \BOOKMARK [1][-]{section.5}{Validity}{}% 21
 \BOOKMARK [1][-]{section.6}{Conclusion}{}% 22
 \BOOKMARK [1][-]{section.7}{Related Work}{}% 23
-\BOOKMARK [1][-]{section*.1}{References}{}% 24
+\BOOKMARK [2][-]{subsection.7.1}{Types of Detection Tool}{section.7}% 24
+\BOOKMARK [2][-]{subsection.7.2}{Token-based Detection Tool}{section.7}% 25
+\BOOKMARK [2][-]{subsection.7.3}{Similarity Algorithm}{section.7}% 26
+\BOOKMARK [1][-]{section*.1}{References}{}% 27

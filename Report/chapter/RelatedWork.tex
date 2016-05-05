@@ -6,18 +6,19 @@
 
 \section{Related Work}
 
+\subsection{Types of Detection Tool}
 
-Based on the cloned types, researchers have developed different techniques and tools. 
+Based on the four cloned types, researchers have developed different techniques and tools. 
 \\ \indent \emph{Text-based}, which means comparing whole lines to each other textually. 
 \\ \indent \emph{Token-based}, it is still line-based comparison, but each sequence is summarized by a functor that abstracts the identifiers and literals, this encoding process preserves the structure of the whole sentence.
 \\ \indent \emph{Metric-based}, by gathering different metrics for code fragments, these metric vectors are compared.
 \\ \indent \emph{Tree-based}, usually means the abstract syntax trees(AST), a program is transformed into an abstract syntax tree, then the leaves and subtrees are compared.
 \\ \indent \emph{Graph-based}, program dependency graphs(PDG), control and data flow dependencies of a function can be represented by a program dependency graph, and comparison of subgraphs will be performed.
 
-There are also other techniques but will not be discussed here.
+%There are also other techniques but will not be discussed here.
 Among all the techniques and tools, token-based method performs well in both clone type detection and time cost.
 
-
+\subsection{Token-based Detection Tool}
 
 Many token-based methods have been developed, like CCFinder\cite{CCFinder}, CMCD\cite{CMCD},  Boreas\cite{Boreas}, RTF\cite{RTF}. 
 
@@ -29,14 +30,21 @@ Boreas is based on CMCD, it uses CMCD to compare variables, as well as taking ke
 
 RTF uses flexible tokenization, but it doesn't use access modifiers like \emph{private, protected, public} and type names \emph{int, short, long, float, double}, so it loses information to some degree.
 
+\subsection{Similarity Algorithm}
+
 As for the similarity calculation, different methods such as Cosine similarity, Jaccard similarity, Euclidean distance and Manhattan distance can be applied in specific cases.
+
 The Cosine similarity function calculates cosine of the angle between two vectors $v_a$ and $v_b$:
 
 \begin{equation}
 CosSim = cos(\alpha) = \frac{v_a \cdot v_b}{||v_a|| \cdot ||v_b||} \nonumber
 \end{equation}
 
-If $v_a$ and $v_b$ are in the same direction, then $cos(0)$ gives a similarity of 1, otherwise the cosine is between 0 and 1. This function takes care of vector length, but may not fit for the token frequency case. 
+If $v_a$ and $v_b$ are in the same direction, then $cos(0)$ gives a similarity of 1, otherwise the cosine is between 0 and 1. 
+
+This function takes care of vector length, but does not fit for the token frequency case. For example, if two vectors have components $<a, 1>, <b, 2>$ and $<a, 2>, <b, 4>$ respectively, then this algorithm will give a similarity of 1, which is not true.
+
+
 
 CMCD gives a very good equation to derive the difference between two count vectors, which is expressed by the Euclidian Distance between them in space:
 
@@ -46,12 +54,36 @@ ED(v_a, v_b) = ||v_a - v_b||_2 = \sqrt{\sum_{i=1}^n(v_{ai} - v_{bi})^2} \nonumbe
 
 where n is the dimension of the vectors, $v_i$ is the $i$th component of $v$.
 
-However the distance of two vectors may not reflect their actual difference because of their lengths, long vectors are more likely to have longer distance, while short vectors distance tend to be shorter, so it leads to some trouble while setting the threshold. A suitable similarity measurement will be designed in our work.\\ \\
+The similarity is given by:
+
+\begin{equation}
+Sim(v_a, v_b) = \frac{1}{1 + ED(v_a, v_b)}
+\end{equation}
+
+However the distance of two vectors may not reflect their actual difference because of their lengths, long vectors are more likely to have longer distance, while short vectors distance tend to be shorter, so it leads to some trouble while setting the threshold. 
+
+Take the example in our implementation:
+
+\begin{eqnarray}\nonumber
+&&\text{List}_x = {<a, 3>, <b, 3>, <c, 3>, <d, 2>}\\ \nonumber
+&&\text{List}_y = {<a, 3>, <b, 3>, <c, 3>, <d, 5>} \\ 
+&&\text{Sim}(\text{List}_x, \text{List}_y) = \frac{1}{1 + 3} = 0.25
+\end{eqnarray}
+
+\begin{eqnarray}\nonumber
+&&\text{List}_x = {<a, 3>, <b, 1>, <c, 3>, <d, 1>}\\ \nonumber
+&&\text{List}_y = {<a, 0>, <b, 5>, <c, 2>, <d, 5>} \\ 
+&&\text{Sim}(\text{List}_x, \text{List}_y) = \frac{1}{1 + 6.48} = 0.13
+\end{eqnarray}
+
+Intuitatively we'll take the first case as clone, but the actual similarity is only 0.25.
+
+Thus a similarity related to  Levenshtein Distance is designed in our work.
 
 
 
-AnDarwin
+%AnDarwin
 
-Similarity Algorithm
+
 
 \end{document}

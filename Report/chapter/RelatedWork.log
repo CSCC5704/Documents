@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  1 MAY 2016 22:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 MAY 2016 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -435,31 +435,21 @@ LaTeX Info: Redefining \nameref on input line 4.
 
 
 
-LaTeX Warning: Citation `CCFinder' on page 1 undefined on input line 22.
+LaTeX Warning: Citation `CCFinder' on page 1 undefined on input line 23.
 
 
-LaTeX Warning: Citation `CMCD' on page 1 undefined on input line 22.
+LaTeX Warning: Citation `CMCD' on page 1 undefined on input line 23.
 
 
-LaTeX Warning: Citation `Boreas' on page 1 undefined on input line 22.
+LaTeX Warning: Citation `Boreas' on page 1 undefined on input line 23.
 
 
-LaTeX Warning: Citation `RTF' on page 1 undefined on input line 22.
+LaTeX Warning: Citation `RTF' on page 1 undefined on input line 23.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 33.
+(Font)              <7> on input line 37.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 33.
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
+(Font)              <5> on input line 37.
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -471,7 +461,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 57.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 89.
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}pdfTeX wa
@@ -480,27 +470,33 @@ n already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.57 \end{document}
+l.89 \end{document}
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{equation.1.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.89 \end{document}
                    ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 57.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 89.
  (./RelatedWork.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 57.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 57.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 89.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 89.
 Package rerunfilecheck Info: File `RelatedWork.out' has not changed.
-(rerunfilecheck)             Checksum: 17C176530693002F3F5D3B86FCC1EC47;47.
+(rerunfilecheck)             Checksum: 6AA3BCE67C415581EDA448051A636801;263.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7685 strings out of 493089
- 117503 string characters out of 6134842
- 216177 words of memory out of 5000000
- 11106 multiletter control sequences out of 15000+600000
+ 7693 strings out of 493089
+ 117617 string characters out of 6134842
+ 217177 words of memory out of 5000000
+ 11109 multiletter control sequences out of 15000+600000
  29755 words of font info for 59 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 38i,5n,34p,364b,311s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,34p,364b,311s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -511,10 +507,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 5/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on RelatedWork.pdf (1 page, 85737 bytes).
+Output written on RelatedWork.pdf (1 page, 92514 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 500000)
- 9 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 72 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
