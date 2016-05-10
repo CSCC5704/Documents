@@ -12,26 +12,24 @@ In the process of finding test data, there is a benchmark of Detection of Softwa
 Using low threshold to rule out most of the non-clones is reasonable because STCD can also work without training. Apply STCD to test files without training will get the following result:
 
 
-\begin{lstlisting}[basicstyle=\footnotesize, language=Java]
-Test Files: Spinner.java
-Similarity = 0.98
+Test Files: Spinner.java \\
+Similarity = 0.98 \\
 
-Line #: 304-313
-public void cut () {
-	checkWidget ();
-	if ((style & SWT.READ_ONLY) != 0) return;
-	NSText fieldEditor = textView.currentEditor();
-	if (fieldEditor != null) {
-		fieldEditor.cut(null);
-	} else {
-		//TODO
-	}
-}
+Line \#: 304-313 \\
+public void cut () { \\
+	if ((style \& SWT.READ\_ONLY) != 0) return; \\ \indent
+	NSText fieldEditor = textView.currentEditor(); \\
+	if (fieldEditor != null) { \\ \indent
+		fieldEditor.cut(null); \\
+	\} else \{ \\ \indent
+		//TODO \\
+	\} \\
+} \\
 
-Line #: 563-572
+Line \#: 563-572
 public void paste () {
 	checkWidget ();
-	if ((style & SWT.READ_ONLY) != 0) return;
+	if ((style \& SWT.READ\_ONLY) != 0) return;
 	NSText fieldEditor = textView.currentEditor();
 	if (fieldEditor != null) {
 		fieldEditor.paste(null);
@@ -43,9 +41,9 @@ public void paste () {
 Test Files: Tree.java
 Similarity = 0.89
 
-Line #: 368-377
+Line \#: 368-377
 void clear (TreeItem parentItem, int index, boolean all) {
-	TreeItem item = _getItem (parentItem, index, false);
+	TreeItem item = \_getItem (parentItem, index, false);
 	if (item != null) {
 		item.clear();
 		item.redraw (-1);
@@ -55,7 +53,7 @@ void clear (TreeItem parentItem, int index, boolean all) {
 	}
 }
 
-Line #: 379-391
+Line \#: 379-391
 void clearAll (TreeItem parentItem, boolean all) {
 	int count = getItemCount (parentItem);
 	if (count == 0) return;
@@ -69,7 +67,6 @@ void clearAll (TreeItem parentItem, boolean all) {
 		}
 	}
 }
-\end{lstlisting}
 
 These two pairs are clones and are found by our tool. After manual inspection, we found that almost all pairs with similarity lower than 0.65 are not clones. Actually, many pairs with similarity between 0.65 and 0.87 are not clones either. So we consider the process of manually finding ground truth is realiable, and the clones ruled out by the similarity of 0.65, i.e. false negative, is small.
 
