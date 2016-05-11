@@ -9,11 +9,11 @@
 \subsection{Types of Detection Tool}
 
 Based on the four cloned types, researchers have developed different techniques and tools. 
-\\ \indent \emph{Text-based}, which means comparing whole lines to each other textually. 
-\\ \indent \emph{Token-based}, it is still line-based comparison, but each sequence is summarized by a functor that abstracts the identifiers and literals, this encoding process preserves the structure of the whole sentence.
-\\ \indent \emph{Metric-based}, by gathering different metrics for code fragments, these metric vectors are compared.
-\\ \indent \emph{Tree-based}, usually means the abstract syntax trees(AST), a program is transformed into an abstract syntax tree, then the leaves and subtrees are compared.
-\\ \indent \emph{Graph-based}, program dependency graphs(PDG), control and data flow dependencies of a function can be represented by a program dependency graph, and comparison of subgraphs will be performed.
+\\ \indent \textbf{Text-based}, which means comparing whole lines to each other textually. 
+\\ \indent \textbf{Token-based}, it is still line-based comparison, but each sequence is summarized by a functor that abstracts the identifiers and literals, this encoding process preserves the structure of the whole sentence.
+\\ \indent \textbf{Metric-based}, by gathering different metrics for code fragments, these metric vectors are compared.
+\\ \indent \textbf{Tree-based}, usually means the abstract syntax trees(AST), a program is transformed into an abstract syntax tree, then the leaves and subtrees are compared.
+\\ \indent \textbf{Graph-based}, program dependency graphs(PDG), control and data flow dependencies of a function can be represented by a program dependency graph, and comparison of subgraphs will be performed.
 
 %There are also other techniques but will not be discussed here.
 Among all the techniques and tools, token-based method performs well in both clone type detection and time cost.
@@ -60,10 +60,9 @@ The similarity is given by:
 Sim(v_a, v_b) = \frac{1}{1 + ED(v_a, v_b)}
 \end{equation}
 
-However the distance of two vectors may not reflect their actual difference because of their lengths, long vectors are more likely to have longer distance, while short vectors distance tend to be shorter, so it leads to some trouble while setting the threshold. 
+However the distance of two vectors may not reflect their actual difference because of their lengths, ``longer'' vectors are more likely to have longer distance, while ``shorter'' vectors distance tends to be shorter, so it leads to some trouble while setting the threshold. 
 
 Take the example in our implementation:
-
 \begin{eqnarray}\nonumber
 &&\text{List}_x = {<a, 3>, <b, 3>, <c, 3>, <d, 2>}\\ \nonumber
 &&\text{List}_y = {<a, 3>, <b, 3>, <c, 3>, <d, 5>} \\ 
@@ -76,9 +75,9 @@ Take the example in our implementation:
 &&\text{Sim}(\text{List}_x, \text{List}_y) = \frac{1}{1 + 6.48} = 0.13
 \end{eqnarray}
 
-Intuitatively we'll take the first case as clone, but the actual similarity is only 0.25.
+Intuitively we take the first case as clone, but the actual similarity is only 0.25.
 
-Thus a similarity related to  Levenshtein Distance is designed in our work.
+Thus a similarity related to Levenshtein Distance is designed in our work.
 
 
 

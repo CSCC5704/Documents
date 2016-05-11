@@ -6,11 +6,12 @@
 
 \begin{abstract}
 %\boldmath
-Code clone detection remains an active topic in software engineering. It is not only common in the programming process, but also leading to low maintainability. 
+Code clone is not only common in the programming process, but also leading to low maintainability. 
+Code clone detection remains an active topic in software engineering. 
 
-In this paper, we propose a simple and efficient token-frequency-based approach in Java to detect cloned codes. Our tool extracts variables in each method, using bigram to find out similar variable names, as well as counting keywords and symbols. After transforming these pieces of information into vectors, components are set with different weights by machine learning method, then a similarity algorithm is introduced to find out similar codes. 
+In this paper, we propose a simple and efficient statistical-based clone detection tool (STCD) in Java to detect cloned codes. For each method, STCD gets method signature and extracts tokens by counting keywords, symbols and others. After transforming these pieces of information into a vector, similarity algorithms are applied to compare corresponding components between two vectors. Then a machine learning model is introduced and trained for similarities. Finally clones are found and displayed as output. 
 
-As a counting-based detection tool, it is small but very efficient: 90\% in both precision and recall rate. STCD is a new and effective tool in clone detection.
+As a counting-based detection tool, STCD is small-scale but very efficient: more than 90\% in both precision and recall rate. STCD is a new and effective tool in the field of clone detection.
 %it compares lists of names and numbers instead of source code directly, so we can expect less time cost compared to other detection tools. Also components have different weights, thus precision and recall can be maintained to some extent. \\
 \end{abstract}
 

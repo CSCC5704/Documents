@@ -7,13 +7,13 @@
 
 Following the idea of our approach, we have implemented STCD. The source code is available at {\color{blue} \url{https://github.com/CSCC5704/SourceCodewithUI}}.
 
-\subsection{Bigram Similarity}
+\subsection{Bigram Algorithm}
 
-After catching all the tokens and accumulating their frequencies, in the pretreatment of variable names, we introduced bigram similarity. After actual testing, the threshold is set to 0.7 in our project. If the similarity of two variable names is higher than 0.7, then they are considered the same and their frequencies will be compared.
+After catching all the tokens and accumulating their frequencies, in the pre-processing of variable names, we introduced bigram algorithm\cite{bigram}. After actual testing, the threshold is set to 0.7 in our tool. If the similarity of two variable names is higher than 0.7, then they are considered the same and their frequencies will be compared.
 
 \subsection{Similarity Algorithm}
 
-For each category of tokens, to calculate the similarity, we used am algorithm similar to Levenshtein Distance:
+For each category of tokens, to calculate the similarity, we used an algorithm similar to Levenshtein Distance\cite{LD}.
 
 \begin{equation}
 \text{Sim}(\text{List}_x, \text{List}_y) = 1 - \frac{\sum \text{Diff}(\text{Elem}_{x_i}, \text{Elem}_{y_i})} {\sum (\text{Freq}_{x_i} + \text{Freq}_{y_i} )}
@@ -22,7 +22,7 @@ For each category of tokens, to calculate the similarity, we used am algorithm s
 where the difference of two elements is defined by:
 
 \begin{equation}
-\text{Diff}(\text{Elem}_{x_a}, \text{Elem}_{y_a}) = \text{Abs}(\text{Freq}_{x_a} - \text{Freq}_{y_a})
+\text{Diff}(\text{Elem}_{x_a}, \text{Elem}_{y_a}) = \text{abs}(\text{Freq}_{x_a} - \text{Freq}_{y_a})
 \end{equation}
 
 This is a well-defined calculation, because no difference in the lists gives a similarity of 1, while totally different lists give similarity of 0.
@@ -47,17 +47,17 @@ This result matches our intuition: the lists in the first example are more simil
 
 \subsection{Machine Learning}
 
-Before using machine learning to set the weights, we set the weights arbitrarily, which may not provide the best result, but it works in finding clones. That being said, STCD can also run without training, however the training process will provide a better result. 
+Before using machine learning to set the weights, we set the weights manually, which may not provide the best result, but it does work in finding clones. That being said, STCD can also run without training, however the training process will provide a better result. 
 
-To get training data, we use manual selection to find ``ground truth''. However it is not so easy to manually find ``ground truth'': if a Java file has 100 methods, then we need to compare $\frac{100\times 99}{2} = 4950$ pairs. In these pairs, most of them are not clone, so we applied our tool to the Java file, with a low threshold of 0.65 to rule out most of the pairs, and manually checked the rest. This reduced our work from thousands of comparasions to less than a hundred. This process may introduce false negatives but we consider it to be small.
+To get training data, we use manual selection to find ``ground truth''. However it is not so easy to manually find ``ground truth'': if a Java file has 100 methods, then we need to compare (100*99) / 2 = 4950 pairs. In these pairs, most of them are not clones, so we applied our tool to the Java file, with a low threshold of 0.65 to rule out most of the pairs, and manually checked the rest. This reduced our work from thousands of comparisons to less than a hundred. This process may introduce false negatives but we consider it to be small.
 
-We selected training files from SWT--the tool to develop our UI. The advantage to use data from the same project is that machine learning can learn the developer's behavior. We chose 10 Java files, namely: \textit{Combo.java, DragSource.java, DropTarget.java, FormData.java, Label.java, Printer.java, Program.java, Shell.java, Text.java, WebKit.java}. The number of methods ranges from 12 to 125.
+We selected training files from SWT source files -- the tool to develop our application. The advantage to use data from the same project is that machine learning may learn the developer's behavior. We chose 10 Java files, namely: \textit{Combo.java, DragSource.java, DropTarget.java, FormData.java, Label.java, Printer.java, Program.java, Shell.java, Text.java, WebKit.java}. The number of methods ranges from 12 to 125.
 
 In the training process, MLP studies 50 clone pairs and 150 non-clone pairs to decide the best weights. There are many more non-clone pairs but studying more of them does not give a better result.
 
 \subsection{Application}
 
-To make STCD more user friendly, we choose SWT as a toolkit. SWT is a graphical widget toolkit developed by IBM. It uses native elements when possible and always shows native behaviors. With SWT we developed an application, as shown in Fig:\ref{fig:Graph_3}.
+To make STCD more user friendly, we choose SWT as a toolkit. SWT is a graphical widget toolkit developed by IBM. It uses native elements when possible and always shows native behaviors. With SWT we developed an application, as shown in Fig. \ref{fig:Graph_3}.
 
 \begin{figure*}
 \centering \includegraphics[width = \textwidth]{Graph_3} 
@@ -69,12 +69,12 @@ To make STCD more user friendly, we choose SWT as a toolkit. SWT is a graphical 
 The step-by-step instruction to use STCD:
 
 \begin{enumerate}
-\item From the training menu users are able to select training files. STCD can also run the testing without training, then starts from Step 4.
-\item After the selection of training files, users can adjust Hidden Nodes and Training Times in the MLP training process, as well as the threshold. 
+\item From the training menu users are able to select training files. STCD can also run the testing without training, then start from Step 4.
+\item After the selection of training files, users can adjust hidden nodes and training times in the MLP training process, as well as the threshold. 
 \item Run the training until it's ready, that takes less than seconds. 
 \item From the test menu users can choose the Java file to test. A second file can be selected, if not, the test will be within the same file. 
 \item Run the test until the result is shown.
-\item From the Results window, click on the clone and the clone pairs will be shown in green and red color. The Method 1 and Method 2 windows show the token frequencies in each method.  
+\item From the Results window, click on the item and the clone pairs will be shown in green and red color. The Method 1 and Method 2 windows show the token frequencies in each method.
 \end{enumerate}
 
 

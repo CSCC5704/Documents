@@ -9,23 +9,26 @@ Our detailed approach is constructed as follows:
 
 \subsection{Method Declaration}
 
-STCD is based on methods, it counts tokens in each method. So the very first thing to do is method declaration. Here we used AST Parser Tool to catch each method and get the information, which means, the \textit{startLineNumber, endLineNumber, methodName, methodParameters, methodType, methodBody}. This costs extra time than needed and can be improved in future work.
+STCD is based on methods, it counts tokens in each method. So the very first thing to do is method declaration. Here we used ASTParser Tool to catch each method and get the information, which means, the \textit{startLineNumber, endLineNumber, methodName, methodParameters, methodType, methodBody}. This costs extra time than needed and can be improved in future work.
 
 \subsection{Tokenization}
 
-Since we have divided the whole file into methods, next is to tokenize the method body and get the frequency of each token. This includes the comment and white space removal process.
+Since we have divided the whole file into methods, next is to tokenize the method body and get the frequency of each token. Comments and white-spaces removal process are included.
 
 \subsection{Categorization}
 
-Now for each method, we have a list of tokens, these tokens fall into 9 categories: \textit{methodParameter, methodType, tokenListNumber, tokenListType, tokenListKeyword, tokenListMarker, tokenListOperator, tokenListOther1, tokenListOther2}. The purpose of doing so is that these categories have different meanings. For example, two pieces of code both have 2 type names: ``int'', that provides no useful information, however, if two pieces of code both have 2 method parameter names: ``drawVerticalLine'', that means these pair are more likely the same. Later on these categories will be given different weights, depending on their importance.
+Now for each method, we have a list of tokens, these tokens fall into 9 categories: \textit{methodParameter, methodType, tokenListNumber, tokenListType, tokenListKeyword, tokenListMarker, tokenListOperator, tokenListOther1, tokenListOther2}. The purpose of doing so is that these categories have different importance. For example, two pieces of codes both have 2 type names: ``int'', that provides little useful information, however, if two pieces of codes both have 2 variable names: ``drawVerticalLine'', that means this pair of codes are more likely the same. Later on these categories will be given different weights, depending on their importance.
 
-A list of categorized tokens is shown in table \ref{tab:Table_1}:\\
+A list of categorized tokens is shown in Table \ref{tab:Table_1}.
 
-\begin{tablehere}
+\begin{table}[t]
 \footnotesize
-\begin{tabular}[h]{|c|c|c||c|c|c|}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+\caption{A List of Token Frequency}\label{tab:Table_1}
+\begin{tabular}{|c|c|c||c|c|c|}
 \hline
-Token & Category & Freq 	& Token & Category & Freq\\
+\textbf{Token} & \textbf{Category} & \textbf{Freq} & \textbf{Token} & \textbf{Category} & \textbf{Freq}\\
 \hline
 int & Type &1 		&  ) & Marker & 6\\
 \hline
@@ -47,21 +50,20 @@ toBinaryString & Other1 & 1	& 5.0 & Num & 1\\
 \hline
 ( & Marker & 6		& 33.0 & Num & 1\\
 \hline
-\end{tabular}\\
-\caption{A List of Token Frequency}\label{tab:Table_1}
-\end{tablehere}
+\end{tabular} \\
+\end{table}
 
-\subsection{Pretreatment of Variable Names}
+\subsection{Pre-processing of Variable Names}
 
-Among all the categories, variable name, i.e. \textit{methodParameter} is special. Its similarity is caculated with bigram algorithm. If ``drawVerticalLine'' and ``VerticalDrawLine'' appear in two code fragments respectively, we don't want to take them as different. So two similar variable names will be compared by bigram similarity, if they are similar, they will be taken as the same and their frequencies will be compared later.
+Among all the categories, \textit{ tokenListOther1}, i.e. variable name is special. Its similarity is calculated with bigram algorithm\cite{bigram}. If ``drawVerticalLine'' and ``VerticalDrawLine'' appear in two code fragments respectively, we do not want to take them as different. So two variable names will be compared by bigram algorithm, if they are similar, they will be considered as the same and their frequencies will be compared later.
 
 \subsection{Similarity Calculation for Each Category}
 
-After the pretreatment of variable names, a similarity algorithm is applied to each category. A list of tokens with their frequencies can be taken as a vector, so the similarity for two vectors can be caculated, and we have 9 similarity numbers for each comparision.
+After the pre-processing of variable names, similarity algorithms are applied to these categories. For ``tokenList'' categories, tokens with their frequencies can be taken as a list, so the similarity for two lists can be calculated. We have 9 similarity values for these categories.
 
 \subsection{Final Similarity Calculation and Result}
 
-Finally, the 9 similarity numbers are given different weights and the final similarity will be calculated. A threshold is introduced, if the final similarity is higher than the threshold, the result will be printed out in the following format: clone group number, similarity number: method name 1, start line number, end line number; method name 2, start line number, end line number.
+Finally, the 9 similarity values are given different weights and the final similarity will be calculated. A threshold is introduced, if the final similarity is higher than the threshold, the result will be printed out in the following format: clone group number, similarity value: method name 1, start line number, end line number; method name 2, start line number, end line number.
 
 %\begin{figurehere}
 %\centering \includegraphics[width = 0.45 \textwidth]{Graph_1} 
@@ -72,14 +74,13 @@ Finally, the 9 similarity numbers are given different weights and the final simi
 
 During the final step, different weights are given to different categories, however, picking 9 weights arbitrarily may not be reasonable. So we used machine learning method to improve the results. Provided training files with ``ground truth'', a multilayer perceptron(MLP) is introduced to achieve this goal. 
 
-MLP is an artificial neural network model that maps sets of input data onto a set of appropriate outputs. A single MLP contains three layers of nodes, and the nodes in one layer are fully connected with those in the next one. To train the network, this model utilizes back-propagation which is a supervised learning technique.
-
+MLP\cite{mlp} is an artificial neural network model that maps sets of input data onto a set of appropriate outputs. A single MLP contains three layers of nodes, and the nodes in one layer are fully connected with those in the next one. To train the network, this model utilizes back-propagation which is a supervised learning technique.
 After actual testing, it turns out MLP does provide a better result.
 
-A diagram describing the whole process is shown in Fig:\ref{fig:Graph_2}.\\
+A diagram describing the whole process is shown in Fig. \ref{fig:Graph_2}.\\
 
 \begin{figurehere}
-\centering \includegraphics[width = 0.45 \textwidth]{Graph_2} 
+\centering \includegraphics[width = 0.4 \textwidth]{Graph_2} 
 \caption{Overall Project Framework} \label{fig:Graph_2}
 \end{figurehere}
 

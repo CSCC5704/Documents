@@ -1,13 +1,12 @@
 \documentclass[../main.tex]{subfiles}
 
-
 \begin{document}
 
 \section{Evaluation}
 
 \subsection{Test Result Without Machine Learning}
 
-In the process of finding test data, there is a benchmark of Detection of Software Clones: {\color{blue} \url{http://www.bauhaus-stuttgart.de/clones/}}. It is a general repository and information center for Detection of Software Clones, it accepts files with labeled clones for clone detection tool evaluation. However its format does not meet our requirement, so again we use manual selection to find ``ground truth'' for testing, just as we did in finding training data: using a low threshold of 0.65 to rule out most of the pairs and manually compare the rest.
+In the process of finding test data, there is a benchmark of Detection of Software Clones: {\color{blue} \url{http://www.bauhaus-stuttgart.de/clones/}}. It is a general repository and information center for Detection of Software Clones, it accepts files with labeled clones for clone detection tool evaluation. However its format does not meet our need, so again we use manual selection to find ``ground truth'' for testing, just as we did in finding training data: using a low threshold of 0.65 to rule out most of the pairs and manually compare the rest.
 
 Using low threshold to rule out most of the non-clones is reasonable because STCD can also work without training. Apply STCD to test files without training will get the following result:
 
@@ -71,17 +70,20 @@ void clearAll (TreeItem parentItem, boolean all) {
 }
 \end{lstlisting}
 
-These two pairs are clones and are found by our tool. After manual inspection, we found that almost all pairs with similarity lower than 0.65 are not clones. Actually, many pairs with similarity between 0.65 and 0.87 are not clones either. So we consider the process of manually finding ground truth is realiable, and the clones ruled out by the similarity of 0.65, i.e. false negative, is small.
+These two pairs are clones and are found by our tool. After manual inspection, we found that almost all pairs with similarity lower than 0.65 are not clones. Actually, many pairs with similarity between 0.65 and 0.87 are not clones either. So we consider the process of manually finding ground truth is reliable, and the clones ruled out by the similarity of 0.65, i.e. false negative, is small.
 
 \subsection{Test Result With Machine Learning}
 
-We select test data from SWT--since machine learning is based on SWT files. The 10 files we used for testing are: \textit{Button.java, CoolBar.java, Menu.java, Spinner.java, TabFolder.java, TableItem.java, ToolBar.java, ToolItem.java, Tracker.java, Tree.java}. The number of methods ranges from 38 to 147.
+We select test data also from SWT source files. The 10 files we used for testing are: \textit{Button.java, CoolBar.java, Menu.java, Spinner.java, TabFolder.java, TableItem.java, ToolBar.java, ToolItem.java, Tracker.java, Tree.java}. The number of methods ranges from 38 to 147.
 
-Since we have our tool and test data, we are ready to do evaluation. After tranining with MLP, the test result is shown in Table \ref{tab:Table_2}: \\
+Since we have our tool and test data, we are ready to do the evaluation. After training with MLP, the test result is shown in Table \ref{tab:Table_2}. \\
 
 \begin{tablehere}
 %\small
-\begin{tabular}[h]{|c|c|c|c|}
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+\caption{Test Result}\label{tab:Table_2}
+\begin{tabular}{|c|c|c|p{20pt}<{\centering}|}
 \hline
 Test Files & \begin{tabular}{c}TP + FN \\ (Actual \\ Clones) \end{tabular} 
 				& \begin{tabular}{c}TP + FP \\ (Detected \\ Clones) \end{tabular} & TP \\
@@ -107,23 +109,22 @@ Tracker.java & 1 & 1 & 1 \\
 Tree.java & 11 & 13 & 9\\
 \hline
 \end{tabular}\\
-\caption{Test Result}\label{tab:Table_2}
 \end{tablehere}
 
 Here we used a threshold of 0.87. A lower threshold will result in more ``clones'' to be detected, which reduces the precision rate, while a higher threshold will result in more false negatives, thus a lower recall rate. After actual testing, a threshold of 0.87 balances the precision and recall rate.
 
 In the table above, the detected clones are very close to actual clones, 4 out of 10 files got exact match.
 
-One thing needs to be mentioned is about \textit{ToolItem.java}, the process of manually finding ``ground truth'' results in 2 false negatives. At first we decided there is only 1 ``actual'' clone, but after training and testing, STCD found 3. After checking by eye, we decided the extra 2 pairs are actually clones, they were ruled out earlier by the low threshold of 0.65. This being said, manual selection does result in false negatives, however on the other hand, this implies the training process is effective.
+One thing needs to be mentioned is about \textit{ToolItem.java}, the process of manually finding ``ground truth'' results in 2 false negatives. At first we decided there is only 1 ``actual'' clone, but after training and testing, STCD found 3. After manual inspection, we decided the extra 2 pairs are actual clones, they were ruled out earlier by the low threshold of 0.65. This being said, manual selection does result in false negatives, however on the other hand, this implies the training process in our tool is effective.
 
-\subsection{Precision and Recall}
+\subsection{Precision and Recall Rate}
 
 \begin{figurehere}
-\centering \includegraphics[width = 0.4 \textwidth]{Graph_4} 
+\centering \includegraphics[height = 0.35 \textwidth, width = 0.32 \textwidth]{Graph_4} 
 \caption{Calculation of Precision and Recall} \label{fig:Graph_4}
 \end{figurehere}
 
-Fig:\ref{fig:Graph_4} shows the relationship between actual clones and detected clones, based on the definition of Precision and Recall, 
+Fig. \ref{fig:Graph_4} shows the relationship between actual clones and detected clones, based on the definition of Precision and Recall\cite{precision}, 
 
 \begin{equation}
 \text{Precision} = \frac{ \text{True Positives}} {\text{Detected Clones}} = \frac{ \text{TP}} {\text{TP} + \text{FP}}
@@ -133,7 +134,7 @@ Fig:\ref{fig:Graph_4} shows the relationship between actual clones and detected 
 \text{Recall} = \frac{ \text{True Positives}} {\text{Actual Clones}} = \frac{ \text{TP}} {\text{TP} + \text{FN}}
 \end{equation}
 
-Except for \textit{Button.java} and \textit{Menu.java} which we are unable to calculate the Precision and Recall, the other 8 files have Average Precision of 92.75\% and Average Recall of 91.25\%. The precision and recall for each file is given in Fig:\ref{fig:Graph_5}, they are high enough to make STCD practical.
+Except for \textit{Button.java} and \textit{Menu.java} which we are unable to calculate the Precision and Recall, the other 8 files have Average Precision of 92.75\% and Average Recall of 91.25\%. The precision and recall for each file is given in Fig. \ref{fig:Graph_5}, they are high enough to make STCD practical. \\
 
 \begin{figurehere}
 \centering \includegraphics[width = 0.45 \textwidth]{Graph_5} 
@@ -142,9 +143,9 @@ Except for \textit{Button.java} and \textit{Menu.java} which we are unable to ca
 
 \subsection{Time Cost Evaluation}
 
-The time cost of STCD is also evaluated, and is given in Fig:\ref{fig:Graph_6}. This experiment is performed on a Macbook Air, time cost varies with the configuration of computer. Since the comparasion for n methods is $\frac{n(n-1)}{2}$, we expect the time cost to be quadratic, and it turns out to be so--with some variations, which is the result of different method lengths.
+The time cost of STCD is also evaluated, and is given in Fig. \ref{fig:Graph_6}. This experiment is performed on OS X EI Capitan (CPU: 1.6 GHz Intel Core i5, Memory: 4 GB DDR3), time cost varies with the configuration of computer. Since the comparison for n methods is n(n-1)/2, we expect the time cost to be quadratic, and it turns out to be so--with some variations, which is the result of different method lengths.
 
-A quadratic time cost is tolerable, especially with the fact that running a file with 100 methods takes only 2 seconds. Most Java files won't have more than hundreds of methods, so our tool is very practical.
+A quadratic time cost is tolerable, especially with the fact that running a file with 100 methods takes only 2 seconds. Most Java files won't have more than hundreds of methods, so our tool is very practical. \\
 
 \begin{figurehere}
 \centering \includegraphics[width = 0.45 \textwidth]{Graph_6} 
